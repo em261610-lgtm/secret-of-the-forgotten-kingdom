@@ -42,11 +42,11 @@ jobs:
         cp ../../style.css www/
         cp ../../game.js www/
         cp ../../config.xml .
-        cordova build android --release
+        cordova build android
 
     - name: Upload APK to Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: Secret-Kingdom-APK
-        path: temp_project/game/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        path: temp_project/game/platforms/android/app/build/outputs/apk/**/*.apk
         
