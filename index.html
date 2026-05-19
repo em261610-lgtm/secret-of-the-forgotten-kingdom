@@ -4,28 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>سر المملكة المنسية 3D</title>
-    <!-- استدعاء مكتبة الـ 3D ومكتبة الحركات -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- الشاشة الـ 3D -->
-    <div id="canvas-container"></div>
-
-    <!-- واجهة اللعبة الشيك جداً -->
-    <div class="ui-box" id="ui-box">
-        <h1 class="game-title">سر المملكة المنسية</h1>
-        <p class="story-p" id="story-text">البلورة النيون بتلف في الفضاء يا زين.. طاقة الشر بدأت تظهر وقمر وعفروتو مستنيين إشارتك! هتبدأ الرحلة؟</p>
-        
+    <div id="start-screen" class="screen full-screen">
+        <h1 class="game-title glow">سر المملكة المنسية</h1>
+        <p class="story-p">هل أنت مستعد لدخول أبعاد الفضاء الأسطوري وإنقاذ البلورة؟ 🌌</p>
         <div class="buttons-container">
-            <button class="btn btn-primary" onclick="makeChoice(1)">⚔️ اشحن سيف النور واهجم</button>
-            <button class="btn btn-secondary" onclick="makeChoice(2)">🔮 استدعي تعويذة قمر السحرية</button>
+            <button class="btn btn-primary" onclick="startGame()">🎮 ابدأ المغامرة</button>
+            <button class="btn btn-danger" onclick="exitGame()">❌ خروج من اللعبة</button>
         </div>
     </div>
 
-    <!-- لوحة التحكم السريعة في الحركة -->
-    <div class="joystick-info">المس الشاشة وحرك صباعك عشان تلف الكاميرا 3D حوالين الكريستالة! 🕹️</div>
+    <div id="canvas-container"></div>
+
+    <div id="ui-box" class="ui-box hidden">
+        <h2 class="game-subtitle">معركة البوابة</h2>
+        <p class="story-p" id="story-text">البلورة النيون بتلف في الفضاء.. طاقة الشر ظهرت وقمر وعفروتو مستنيين إشارتك! 🔮</p>
+        <div class="buttons-container">
+            <button class="btn btn-primary" onclick="makeChoice(1)">⚔️ اشحن السيف واهجم</button>
+            <button class="btn btn-secondary" onclick="makeChoice(2)">🔮 استدعي تعويذة قمر</button>
+        </div>
+    </div>
+
+    <div id="end-screen" class="screen full-screen hidden">
+        <h1 class="game-title text-danger">نهاية الرحلة</h1>
+        <p class="story-p" id="end-story-text">لقد أنقذت المملكة المنسية وأصبحت الأسطورة! 🏆</p>
+        <div class="buttons-container">
+            <button class="btn btn-primary" onclick="restartGame()">🔄 العب تاني</button>
+            <button class="btn btn-danger" onclick="exitGame()">❌ خروج</button>
+        </div>
+    </div>
+
+    <div id="joystick-info" class="joystick-info hidden">حرك صباعك على الشاشة لتأمل البلورة السحرية 🕹️</div>
 
     <script src="game.js"></script>
 </body>
