@@ -1,0 +1,52 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+
+    - name: Install Cordova
+      run: npm install -g cordova
+
+    - name: Create Cordova Project & Build APK
+      run: |
+        mkdir temp_project
+        cd temp_project
+        cordova create game com.zein.secretkingdom "SecretKingdom"
+        cd game
+        cordova platform add android
+        cp ../../index.html www/
+        cp ../../style.css www/
+        cp ../../game.js www/
+        cp ../../config.xml .
+        cordova build android --release
+
+    - name: Upload APK to Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Secret-Kingdom-APK
+        path: temp_project/game/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+        
