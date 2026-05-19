@@ -11,99 +11,67 @@ body, html {
 
 #canvas-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1;
 }
 
-/* واجهة المستخدم الشفافة الشيك */
+/* نظام الشاشات الكاملة */
+.screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: radial-gradient(circle, #101030 0%, #050510 100%);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.full-screen { transition: all 0.5s ease; }
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none !important;
+}
+
+/* واجهة المستخدم أثناء اللعب */
 .ui-box {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 90%;
-    max-width: 450px;
+    bottom: 30px; left: 50%; transform: translateX(-50%);
+    z-index: 2; width: 90%; max-width: 450px;
     background: rgba(10, 10, 25, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 25px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 242, 254, 0.1);
+    border-radius: 24px; padding: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
     text-align: center;
-    transition: all 0.5s ease;
 }
 
 .game-title {
-    margin: 0 0 15px 0;
-    font-size: 2.2rem;
-    font-weight: 900;
+    font-size: 2.8rem; margin-bottom: 20px; font-weight: 900;
     background: linear-gradient(45deg, #00f2fe, #4facfe, #9b51e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.story-p {
-    color: #d1d1f7;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.game-subtitle { color: #00f2fe; margin-bottom: 10px; }
+.story-p { color: #d1d1f7; font-size: 1.2rem; margin-bottom: 30px; max-width: 400px; }
+.buttons-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; }
 
 .btn {
-    border: none;
-    padding: 15px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: white;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none; padding: 16px; font-size: 1.1rem; font-weight: bold;
+    color: white; border-radius: 14px; cursor: pointer; transition: transform 0.2s;
 }
-
-.btn-primary {
-    background: linear-gradient(135deg, #00f2fe, #4facfe);
-    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
-}
-
-.btn-primary:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.6);
-}
-
-.btn-secondary {
-    background: linear-gradient(135deg, #7f00ff, #e100ff);
-    box-shadow: 0 6px 20px rgba(225, 0, 255, 0.3);
-}
-
-.btn-secondary:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(225, 0, 255, 0.5);
-}
+.btn-primary { background: linear-gradient(135deg, #00f2fe, #4facfe); }
+.btn-secondary { background: linear-gradient(135deg, #7f00ff, #e100ff); }
+.btn-danger { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+.btn:active { transform: scale(0.95); }
 
 .joystick-info {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    background: rgba(0,0,0,0.4);
-    padding: 8px 16px;
-    border-radius: 20px;
-    pointer-events: none;
-    text-align: center;
-    width: 80%;
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 2; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;
+    background: rgba(0,0,0,0.4); padding: 8px 16px; border-radius: 20px; pointer-events: none;
 }
